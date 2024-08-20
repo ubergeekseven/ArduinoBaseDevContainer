@@ -1,0 +1,24 @@
+{
+    "name": "Arduino Dev Container",
+    "build": {
+        "dockerfile": "Dockerfile"  // Adjust if you have a different Dockerfile name or location
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "vsciot-vscode.vscode-arduino"
+            ]
+        }
+    },
+    "features": {
+        "ghcr.io/devcontainers/features/github-cli:1": {
+            "installDirectlyFromGitHubRelease": true,
+            "version": "latest"
+        }
+    },
+    "postCreateCommand": "arduino-cli core update-index && arduino-cli core install arduino:avr",
+    "mounts": [
+        "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached"
+    ],
+    "workspaceFolder": "/workspace"
+}
